@@ -1,36 +1,49 @@
 import React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 import siteConfig from '../../data/en';
+import { object } from "prop-types"
 
 const title = siteConfig.siteTitle;
+const description = siteConfig.siteDescription;
 
-function calculate(form) {
-  form.action = "calculate.html";
-  alert('Hello');
-  return 0.25 * form.input;
-}
-
-const IndexPage = () => (
+export default class IndexPage extends React.Component {
+  state = { 
+    quantity: 0,
+    price: 0
+  }
   
-  <Layout>
+  handleInputChange = event => {
+    const quantity = event.target.value
+
+    this.setState ({
+      quantity: quantity
+    })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+
+    const price = this.state.quantity * 0.25
+
+    this.setState ({
+      price: price
+    })
+   }
+
+  render() {
+    return <Layout>
     <SEO title="Home" />
     <h1>{title}</h1>
-    <p>.</p>
-    <form onSubmit="return calculate(this)">
-    <label for="amountOfCorn">Amount of Corn:</label>
-      <input type="number" id="amountOfCorn" name="amountOfCorn"></input>
+    <p>{description}</p>
+    <form onSubmit={this.handleSubmit}>
+    <label htmlFor="quantity">Amount of Corn: </label>
+      <input type="number" min="0" id="quantity" name="quantity" onChange={this.handleInputChange}></input>
       <br/>
       <br/>
       <input id="calculate" type="submit" value="Get Price"></input>
     </form>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
+    <p>Price: £<span>{this.state.price}</span></p>
   </Layout>
-)
-
-export default IndexPage
+  }
+}
