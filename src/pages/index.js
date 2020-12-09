@@ -2,8 +2,8 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Calculator from "../components/calculator"
 import siteConfig from '../../data/en';
-import { object } from "prop-types"
 
 const description = siteConfig.siteDescription;
 const unitPrice = 0.25
@@ -22,8 +22,7 @@ export default class IndexPage extends React.Component {
         cornQuantity: cornQuantity
       })
     }
-
-    if (event.target.name === "geese-quantity") {
+    else if (event.target.name === "geese-quantity") {
       const geeseQuantity = Number(event.target.value)
       this.setState ({
         geeseQuantity: geeseQuantity
