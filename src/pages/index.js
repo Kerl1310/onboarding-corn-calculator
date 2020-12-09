@@ -32,7 +32,7 @@ export default class IndexPage extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    const totalPrice = Calculate(this.state.cornQuantity, this.state.geeseQuantity, this.state.unitPrice)
+    const totalPrice = Calculate(this.state.cornQuantity, this.state.geeseQuantity, unitPrice)
 
     this.setState ({
       totalPrice: totalPrice
