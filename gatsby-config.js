@@ -1,8 +1,9 @@
 module.exports = {
+  pathPrefix: "/onboarding-corn-calculator",
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Corn Calculator`,
+    description: `Price calculator for the farmer's corn crops.`,
+    author: `Team 2`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
