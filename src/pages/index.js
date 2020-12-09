@@ -1,8 +1,7 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Calculator from "../components/calculator"
+import Calculate from "../components/calculator"
 import siteConfig from '../../data/en';
 
 const description = siteConfig.siteDescription;
@@ -33,9 +32,7 @@ export default class IndexPage extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    const totalUnits = this.state.cornQuantity + this.state.geeseQuantity
-
-    const totalPrice = ((totalUnits * 2) * unitPrice) - unitPrice
+    const totalPrice = Calculate(this.state.cornQuantity, this.state.geeseQuantity, this.state.unitPrice)
 
     this.setState ({
       totalPrice: totalPrice
@@ -46,17 +43,17 @@ export default class IndexPage extends React.Component {
     return <Layout>
     <SEO title="Home" />
     <p id="description">{description}</p>
-    <form id="calculatorForm" onSubmit={this.handleSubmit}>
-      <label htmlFor="corn-quantity">Amount of Corn: </label>
-      <input type="number" min="0" id="corn-quantity" name="corn-quantity" onChange={this.handleInputChange} placeholder="0"></input>
-      <br/>
-      <br/>
-      <label htmlFor="geese-quantity">Amount of Geese: </label>
-      <input type="number" min="0" id="geese-quantity" name="geese-quantity" onChange={this.handleInputChange} placeholder="0"></input>
-      <br/>
-      <br/>
-      <input id="calculate" type="submit" value="Get Price"></input>
-    </form>
+     <form id="calculatorForm" onSubmit={this.handleSubmit}>
+        <label htmlFor="corn-quantity">Amount of Corn: </label>
+        <input type="number" min="0" id="corn-quantity" name="corn-quantity" onChange={this.handleInputChange} placeholder="0"></input>
+        <br/>
+        <br/>
+        <label htmlFor="geese-quantity">Amount of Geese: </label>
+        <input type="number" min="0" id="geese-quantity" name="geese-quantity" onChange={this.handleInputChange} placeholder="0"></input>
+        <br/>
+        <br/>
+        <input id="calculate" type="submit" value="Get Price"></input>
+      </form>
     <p id="price-p">Price: £<span id="price-span">{this.state.totalPrice}</span></p>
   </Layout>
   }
