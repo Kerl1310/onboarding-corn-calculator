@@ -6,7 +6,7 @@ describe("Calculate", () => {
     const geeseQuantity = 0;
     const unitPrice = 0.25;
 
-    const output = 0;
+    const output = 0.25;
 
     expect(Calculate(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
   })

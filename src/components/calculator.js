@@ -1,7 +1,7 @@
 function Calculate(cornQuantity, geeseQuantity, unitPrice) {
     
     if (cornQuantity === 0 && geeseQuantity === 0) {
-        return 0;
+        return 0.25;
     }
 
     if (cornQuantity && geeseQuantity) {
