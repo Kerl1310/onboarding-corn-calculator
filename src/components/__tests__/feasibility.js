@@ -1,6 +1,15 @@
 import checkFeasibility from "../feasibility";
 
 describe("Feasibility", () => {
+    test("it should not produce a warning if a trip has no items", () => {
+        const cornQuantity = 0;
+        const geeseQuantity = 0;
+
+        const output = "";
+
+        expect(checkFeasibility(cornQuantity, geeseQuantity)).toEqual(output);
+    })
+
     test("it should not produce a warning if a trip has only one goose", () => {
       const cornQuantity = 1;
       const geeseQuantity = 0;
