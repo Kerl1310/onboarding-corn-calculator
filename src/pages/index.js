@@ -49,8 +49,6 @@
           totalPrice: totalPrice,
           tripList: trips
         })
-
-        console.log(this.state.tripList);
      };
 
      handleButtonClick = event => {

@@ -1,17 +1,17 @@
 function getTripList(cornQuantity, geeseQuantity) {
     let tripList = [];
-    if(geeseQuantity && cornQuantity){
-        if(geeseQuantity + cornQuantity > 3){
+    if (geeseQuantity && cornQuantity) {
+        if (geeseQuantity + cornQuantity > 3) {
             return tripList;
         }
-        if(geeseQuantity === 1 && cornQuantity === 1){
+        if (geeseQuantity === 1 && cornQuantity === 1) {
             return [
                 "corn across",
                 "farmer back",
                 "goose across"
             ]
         }
-        if(geeseQuantity < cornQuantity){
+        if (geeseQuantity < cornQuantity) {
             return [
                 "goose across",
                 "farmer back",
@@ -33,13 +33,13 @@ function getTripList(cornQuantity, geeseQuantity) {
             ];
         }
     }
-    if(geeseQuantity){
-        for(let i=1; i<geeseQuantity; i++){
+    if (geeseQuantity) {
+        for(let i = 1; i < geeseQuantity; i++) {
             tripList.push("goose across", "farmer back")
         }
         tripList.push("goose across");
     } else if (cornQuantity) {
-        for(let i=1; i<geeseQuantity; i++){
+        for (let i = 1; i < cornQuantity; i++) {
             tripList.push("corn across", "farmer back")
         }
         tripList.push("corn across");
