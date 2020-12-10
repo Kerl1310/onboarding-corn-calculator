@@ -13,6 +13,7 @@
     state = {
       warningMessage: "",
       tripList: [],
+      maxIndex: 0,
       startingIndex: 0,
       cornQuantity: 0,
       geeseQuantity: 0,
@@ -38,7 +39,7 @@
       event.preventDefault();
 
       this.setState({
-        warningMessage: checkFeasibility(this.state.cornQuantity, this.state.geeseQuantity)
+        warningMessage: checkFeasibility(this.state.cornQuantity, this.state.geeseQuantity),
       });
 
         const totalPrice = calculateTotalPrice(this.state.cornQuantity, this.state.geeseQuantity, unitPrice);
@@ -47,7 +48,9 @@
         console.log(trips);
         this.setState ({
           totalPrice: totalPrice,
-          tripList: trips
+          tripList: trips,
+          maxIndex: trips.length,
+          startingIndex: 0
         })
      };
 
@@ -57,22 +60,53 @@
        })
      }
 
+     handleBackButtonClick = event => {
+      this.setState({
+        startingIndex: this.state.startingIndex - 10
+      })
+    }
+
     render() {
       let output = "";
       let tripListOutput = [];
-      let i = 1;
+      let i = this.state.startingIndex;
+      let maxPageIndex = i;
+      let finalPage = false;
 
-      for (let trip of this.state.tripList) {
-      tripListOutput.push(<li key={i}>{i}. {trip}</li>);
-        i++;
+      if (i + 10 < maxPageIndex) {
+        maxPageIndex = this.state.maxIndex;
+      }
+      else {
+        maxPageIndex = i + 10;
       }
 
-      let trips = (
-        <div className="tripList">
-          <ul>{tripListOutput}</ul>
-        </div>
-      );
+      let page = this.state.tripList.slice(i, maxPageIndex);
 
+      for (let trip of page) {
+      tripListOutput.push(<li key={i}>{i + 1}. {trip}</li>);
+        i++;
+      }
+      let trips = [];
+
+      if (maxPageIndex > this.state.maxIndex) {
+        trips = (
+          <div className="tripList">
+            <ul>{tripListOutput}</ul>
+            <button onClick={this.handleBackButtonClick}>Go Back</button>
+          </div>
+        );
+      }
+      else {
+        trips = (
+          <div className="tripList">
+            <ul>{tripListOutput}</ul>
+            <button onClick={this.handleButtonClick}>Load More</button>
+            <br/>
+            <button onClick={this.handleBackButtonClick}>Go Back</button>
+          </div>
+        );
+      }
+      
       if (this.state.warningMessage === "") {
         output = 
         <div>
