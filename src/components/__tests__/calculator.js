@@ -1,4 +1,4 @@
-import Calculate from "../calculator"
+import calculateTotalPrice from "../calculator"
 
 describe("Calculate", () => {
   test("it should calculate correctly with no corn and no geese", () => {
@@ -8,7 +8,7 @@ describe("Calculate", () => {
 
     const output = 0.25;
 
-    expect(Calculate(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
+    expect(calculateTotalPrice(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
   })
 
   test("it should calculate correctly with 2 corn and no geese", () => {
@@ -18,7 +18,7 @@ describe("Calculate", () => {
 
     const output = 0.75;
 
-    expect(Calculate(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
+    expect(calculateTotalPrice(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
   })
 
   test("it should calculate correctly with no corn and 2 geese", () => {
@@ -28,7 +28,7 @@ describe("Calculate", () => {
 
     const output = 0.75;
 
-    expect(Calculate(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
+    expect(calculateTotalPrice(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
   })
 
   test("it should calculate correctly with 2 corn and 1 goose", () => {
@@ -38,7 +38,7 @@ describe("Calculate", () => {
 
     const output = 1.75;
 
-    expect(Calculate(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
+    expect(calculateTotalPrice(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
   })
 
   test("it should calculate correctly with 1 corn and 2 geese", () => {
@@ -48,7 +48,7 @@ describe("Calculate", () => {
 
     const output = 1.75;
 
-    expect(Calculate(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
+    expect(calculateTotalPrice(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
   })
 
   test("it should calculate correctly with 2 corn and 2 geese", () => {
@@ -58,6 +58,6 @@ describe("Calculate", () => {
 
     const output = 0;
 
-    expect(Calculate(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
+    expect(calculateTotalPrice(cornQuantity, geeseQuantity, unitPrice)).toEqual(output);
   })
 })

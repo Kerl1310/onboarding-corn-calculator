@@ -1,4 +1,4 @@
-function Calculate(cornQuantity, geeseQuantity, unitPrice) {
+function calculateTotalPrice(cornQuantity, geeseQuantity, unitPrice) {
     
     if (cornQuantity === 0 && geeseQuantity === 0) {
         return 0.25;
@@ -21,4 +21,4 @@ function Calculate(cornQuantity, geeseQuantity, unitPrice) {
     return totalPrice;
 }
 
-export default Calculate
+export default calculateTotalPrice

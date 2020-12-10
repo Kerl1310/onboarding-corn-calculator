@@ -1,8 +1,9 @@
-  import React from "react"
-  import Layout from "../components/layout"
-  import SEO from "../components/seo"
-  import Calculate from "../components/calculator"
+  import React from "react";
+  import Layout from "../components/layout";
+  import SEO from "../components/seo";
+  import calculateTotalPrice from "../components/calculator";
   import checkFeasibility from "../components/feasibility";
+  import getTripList from "../components/trip-list";
   import siteConfig from '../../data/en';
 
   const description = siteConfig.siteDescription;
@@ -11,6 +12,8 @@
   export default class IndexPage extends React.Component {
     state = {
       warningMessage: "",
+      tripList: [],
+      startingIndex: 0,
       cornQuantity: 0,
       geeseQuantity: 0,
       totalPrice: 0
@@ -38,18 +41,49 @@
         warningMessage: checkFeasibility(this.state.cornQuantity, this.state.geeseQuantity)
       });
 
-        const totalPrice = Calculate(this.state.cornQuantity, this.state.geeseQuantity, unitPrice);
-
+        const totalPrice = calculateTotalPrice(this.state.cornQuantity, this.state.geeseQuantity, unitPrice);
+        console.log(this.state.cornQuantity)
+        const trips = getTripList(this.state.cornQuantity, this.state.geeseQuantity)
+        console.log(trips);
         this.setState ({
-          totalPrice: totalPrice
+          totalPrice: totalPrice,
+          tripList: trips
         })
+
+        console.log(this.state.tripList);
      };
+
+     handleButtonClick = event => {
+       this.setState({
+         startingIndex: this.state.startingIndex + 10
+       })
+     }
 
     render() {
       let output = "";
+      let tripListOutput = [];
+      let i = 1;
+      for (let trip of this.state.tripList) {
+        tripListOutput.push(<li key={i}>{trip}</li>);
+        i++;
+      }
+
+      let trips = (
+        <div className="tripList">
+          <ul>{tripListOutput}</ul>
+        </div>
+      );
 
       if (this.state.warningMessage === "") {
-        output = <p id="price-p">Price: £<span id="price-span">{this.state.totalPrice}</span></p>
+        output = 
+        <div>
+          <p id="price-p">Price: £
+            <span id="price-span">{this.state.totalPrice}</span>
+          </p>
+          <br/>
+          <br/>
+          {trips}
+        </div>
       } else {
         output = <p className="warning-p">Warning: <span id="warning-span">{this.state.warningMessage}</span></p>
       }
