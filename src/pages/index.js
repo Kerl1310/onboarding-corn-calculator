@@ -2,13 +2,15 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Calculate from "../components/calculator"
+import checkFeasibility from "../feasibility";
 import siteConfig from '../../data/en';
 
 const description = siteConfig.siteDescription;
 const unitPrice = 0.25
 
 export default class IndexPage extends React.Component {
-  state = { 
+  state = {
+    warningMessage,
     cornQuantity: 0,
     geeseQuantity: 0,
     totalPrice: 0
@@ -32,11 +34,17 @@ export default class IndexPage extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    const totalPrice = Calculate(this.state.cornQuantity, this.state.geeseQuantity, unitPrice)
-
-    this.setState ({
-      totalPrice: totalPrice
+    this.setState({
+      warningMessage: checkFeasibility(this.state.cornQuantity, this.state.geeseQuantity)
     })
+
+    if (this.warningMessage === "") {
+      const totalPrice = Calculate(this.state.cornQuantity, this.state.geeseQuantity, unitPrice)
+
+      this.setState ({
+        totalPrice: totalPrice
+      })
+    }
    }
 
   render() {
@@ -54,6 +62,7 @@ export default class IndexPage extends React.Component {
         <br/>
         <input id="calculate" type="submit" value="Get Price"></input>
       </form>
+    
     <p id="price-p">Price: £<span id="price-span">{this.state.totalPrice}</span></p>
   </Layout>
   }

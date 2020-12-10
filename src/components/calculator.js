@@ -1,5 +1,3 @@
-import React from "react"
-
 function Calculate(cornQuantity, geeseQuantity, unitPrice) {
     
     if (cornQuantity === 0 && geeseQuantity === 0) {
