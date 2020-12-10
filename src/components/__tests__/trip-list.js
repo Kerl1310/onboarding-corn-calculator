@@ -10,6 +10,19 @@ describe("TripList", () => {
         ];
         expect(getTripList(cornQuantity, geeseQuantity)).toEqual(output);
     });
+    test("3 geese 0 corn", () => {
+        const cornQuantity = 0;
+        const geeseQuantity = 3;
+
+        const output = [
+            "goose across",
+            "farmer back",
+            "goose across",
+            "farmer back",
+            "goose across"
+        ];
+        expect(getTripList(cornQuantity, geeseQuantity)).toEqual(output);
+    });
     test("0 geese 1 corn", () => {
         const cornQuantity = 1;
         const geeseQuantity = 0;
