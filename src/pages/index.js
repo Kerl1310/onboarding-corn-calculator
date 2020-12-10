@@ -55,7 +55,7 @@ export default class IndexPage extends React.Component {
     if (this.state.warningMessage === "") {
       output = <p id="price-p">Price: £<span id="price-span">{this.state.totalPrice}</span></p>
     } else {
-      output = <p class="warning-p">Warning: <span id="warning-span">{this.state.warningMessage}</span></p>
+      output = <p className="warning-p">Warning: <span id="warning-span">{this.state.warningMessage}</span></p>
     }
     
     return <Layout>
@@ -63,16 +63,16 @@ export default class IndexPage extends React.Component {
     <p id="description">{description}</p>
     <form id="calculatorForm" onSubmit={this.handleSubmit}>
       <label htmlFor="corn-quantity">Amount of Corn: </label>
-      <input type="number" min="0" id="corn-quantity" name="corn-quantity" onChange={this.handleInputChange} placeholder="0"></input>
+      <input type="number" min="0" id="corn-quantity" name="corn-quantity" className="quantity" onChange={this.handleInputChange} placeholder="0"></input>
       <br/>
       <br/>
       <label htmlFor="geese-quantity">Amount of Geese: </label>
-      <input type="number" min="0" id="geese-quantity" name="geese-quantity" onChange={this.handleInputChange} placeholder="0"></input>
+      <input type="number" min="0" id="geese-quantity" name="geese-quantity" className="quantity" onChange={this.handleInputChange} placeholder="0"></input>
       <br/>
       <br/>
       <input id="calculate" type="submit" value="Get Price"></input>
     </form>
-    {output}    
+    {output}
   </Layout>
   }
 }
