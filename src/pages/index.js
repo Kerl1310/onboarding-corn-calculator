@@ -61,8 +61,9 @@
       let output = "";
       let tripListOutput = [];
       let i = 1;
+
       for (let trip of this.state.tripList) {
-        tripListOutput.push(<li key={i}>{trip}</li>);
+      tripListOutput.push(<li key={i}>{i}. {trip}</li>);
         i++;
       }
 
